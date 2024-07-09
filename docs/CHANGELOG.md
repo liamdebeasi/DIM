@@ -1,11 +1,58 @@
 ## Next
 
 * Sheets no longer lose scrollbar after searching
+## 8.27.0 <span class="changelog-date">(2024-07-07)</span>
+
+## 8.26.0 <span class="changelog-date">(2024-06-30)</span>
+
+* The progress page shows the Ritual Pathfinder and Pale Heart Pathfinder.
+* Improved how we detect which rewards and challenges are available for Milestones on the Progress page.
+* Prismatic subclasses now show the currently-equipped super overlayed on them.
+* Restored wish-list-ability to all weapons, and actually made exotic class items wishlistable.
+* Manually filled in the possible perks that exotic class items can roll with in the Armory page.
+* A new `is:wishlistable` search highlights items that can be added to a wish list.
+* Made the vendor-item icon on Loadout Optimizer items a bit brighter.
+* Fully removed the concept of sunset weapons. The `is:sunset` search no longer does anything.
+* Added `modslot:salvationsedge` search.
+* Exotic class items now show all of their intrinsic perks.
+* Show the intrinsic perk for Ergo Sum and crafted exotics in Item Feed.
+* Fixed a case where multiple custom stats would overflow in the Item Feed.
+* Removed the stats line from class items in the Item Feed.
+* Fixed missing yellow stat bars from masterworked weapons.
+* Fixed some bizarre behavior in the symbols picker.
+
+## 8.25.0 <span class="changelog-date">(2024-06-23)</span>
+
+* Greatly expanded the set of symbols available for use in loadout names/notes and item notes.
+* Fixed the calculation of stat effects from enhanced stats.
+* The compare sheet now highlights which of the quick-filter buttons is currently active.
+* Changed the way we rate-limit Bungie.net calls, which may result in snappier item moves and loadout application.
+* Added a "compare" button to item feed tiles, since it's such a common action when evaluating new gear.
+* In the item feed, perks in the same column now have a bar on the left to indicate they are together.
+* Engram bonuses in the Milestones section are now relative to your "drop power", not your "character power".
+* The name of the nightfall and crucible labs playlist is included in their Milestone titles.
+* Manually corrected the engram power level for several Milestones.
+* Worked around a bug in the Bungie data that showed duplicate perks in some weapons.
+* Any item with randomized perks can now be wishlisted, which includes random-perk armor.
+
+## 8.24.0 <span class="changelog-date">(2024-06-16)</span>
+* Fix issue where light level displayed in the Loadouts views was calculated using all weapons and armor in the loadout, instead of just the weapons and armor to be equipped.
+* Add `light:` filter to the Loadouts search. Only works with loadouts that equip an item for all weapon and armor slots.
+* DIM now calculates Account Power level, which uses all items from all characters, and determines their "current power level" for the purposes of new item drops.
+  * This number can be found in the header for Vault
+  * Details can be found by clicking any character's gear Power level, below their header/dropdown.
+* Cleaned up armor upgrade slots and inactive Artifice slots showing up in the Item Popup.
+* Loadout Optimizer no longer tries to pair Exotics and Class Item Exotics in the same loadout.
+* Fixed issue where Enhanced BRAVE Mountaintop did not appear to be masterworked.
+* Fixed issue where Enhanced weapons could have perks that showed as not rollable.
+* `is:crafted` matches only crafted weapons, not Enhanced weapons.
+* Max stack size of consumables is now shown in the Item Popup when viewing their details.
+* Add some new materials and remove some old, from material/consumable counts in the Vault header.
 
 ## 8.23.0 <span class="changelog-date">(2024-06-09)</span>
 
 * `is:enhanceable` and `is:enhanced` filters for non-crafted weapons whose perks can be enhanced.
-* Cleaned up extra upgrade slots showing up in the Item Popup.
+* Cleaned up extra weapon upgrade slots showing up in the Item Popup.
 * Shiny BRAVE weapons now have corner stripes.
 * Preliminary support for Exotic Artifice armor in the Loadout Optimizer
   * DIM can now assign these mods and automatically suggest them to according to your preferences.

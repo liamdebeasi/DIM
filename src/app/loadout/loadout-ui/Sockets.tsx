@@ -1,4 +1,5 @@
 import { PressTip } from 'app/dim-ui/PressTip';
+import { useDynamicStringReplacer } from 'app/dim-ui/destiny-symbols/RichDestinyText';
 import { t } from 'app/i18next-t';
 import { DimItem, PluggableInventoryItemDefinition } from 'app/inventory/item-types';
 import { isPluggableItem } from 'app/inventory/store/sockets';
@@ -128,17 +129,16 @@ function Sockets({
 
 function VendorItemPlug({ item }: { item: DimItem }) {
   const defs = useD2Definitions()!;
+  const replacer = useDynamicStringReplacer(item.owner);
+  const vendorDef = defs.Vendor.get(item.vendor!.vendorHash);
   return (
     <PressTip
       elementType="span"
       tooltip={() => {
-        const vendorName =
-          defs.Vendor.get(item.vendor!.vendorHash)?.displayProperties?.name || '--';
+        const vendorName = replacer(vendorDef?.displayProperties?.name) || '--';
         return (
           <>
-            {t('Compare.IsVendorItem')}
-            <br />
-            {t('Compare.SoldBy', { vendorName })}
+            {t('Compare.IsVendorItem', { vendorName })} {t('LoadoutBuilder.ExcludeVendors')}
           </>
         );
       }}
