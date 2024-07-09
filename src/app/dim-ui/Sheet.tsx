@@ -260,6 +260,26 @@ export default function Sheet({
       transition={reducedMotion ? reducedMotionTween : spring}
       animate={animationControls}
       variants={animationVariants}
+      onAnimationStart={(name) => {
+        /**
+         * Scrolling incorrectly latches to the body when a non-scrollable sheet is open.
+         * As a result, we disable scrolling on the body when a sheet is open.
+         * See https://github.com/w3c/csswg-drafts/issues/3349#issuecomment-492721871 and
+         * https://bugs.chromium.org/p/chromium/issues/detail?id=813094
+         */
+        if (name === 'open') {
+          document.documentElement.classList.add('scroll-lock');
+          /**
+           * If the sheet is about to dismiss and it is the last sheet we can safely
+           * re-enable scrolling on the body. We re-enable scrolling at the
+           * start of the animation as opposed to on sheet destroy because otherwise
+           * there would be a noticeable delay between when the sheet begins to dismiss
+           * and when scrolling is re-enabled.
+           */
+        } else if (name === 'close' && sheetsOpen - 1 === 0) {
+          document.documentElement.classList.remove('scroll-lock');
+        }
+      }}
       onAnimationComplete={handleAnimationComplete}
       drag="y"
       dragControls={dragControls}

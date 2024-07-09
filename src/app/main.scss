@@ -308,5 +308,9 @@ code {
   filter: drop-shadow(0 0 0 #fff);
 }
 
+.scroll-lock {
+  overflow-y: hidden;
+}
+
 /* stylelint-disable-next-line no-invalid-position-at-import-rule */
 @import 'app/dim-ui/dim-button.scss';
