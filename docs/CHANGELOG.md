@@ -1,6 +1,7 @@
 ## Next
 
 * Sheets no longer lose scrollbar after searching
+
 ## 8.27.0 <span class="changelog-date">(2024-07-07)</span>
 
 ## 8.26.0 <span class="changelog-date">(2024-06-30)</span>
