@@ -9,6 +9,7 @@ $control-color: rgba(255, 255, 255, 0.5);
 
 .sheet {
   max-height: calc(var(--viewport-height) - var(--header-height) - 8px);
+  height: 100%;
   left: 0;
   right: 0;
   position: fixed;
@@ -55,26 +56,60 @@ $control-color: rgba(255, 255, 255, 0.5);
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   position: relative;
   max-height: calc(var(--viewport-height) - var(--header-height) - 8px);
+  height: 100%;
   touch-action: none;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-wrapper {
+  height: 100%;
+
+  flex: 1;
+
+  position: relative;
 }
 
 .contents {
-  flex: 1;
-  -webkit-overflow-scrolling: touch;
+  position: absolute;
+
+  height: 100%;
+
   box-sizing: border-box;
-  // This gets overridden to overflow-y: auto by a resize observer in the
-  // sheets code if the content actually overflows, as part of an elaborate
-  // workaround for browser bugs concerning overscroll-behavior
-  overflow: hidden;
-  overscroll-behavior: none;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
 
   &:last-child {
     padding-bottom: env(safe-area-inset-bottom);
   }
+}
+
+/**
+ * This forces the rubber band effect on iOS on the scrollable area even if scroll
+ * is not necessary. This is done to make the sheet feel more native. It is also
+ * done to work around a WebKit issue where scrolling will incorrectly latch on
+ * to the body when the sheet cannot be scrolled.
+ */
+.contents::before,
+.contents::after {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  content: '';
+}
+
+.contents::before {
+  bottom: -1px;
+}
+
+.contents::after {
+  top: -1px;
 }
 
 .close {

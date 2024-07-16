@@ -315,12 +315,10 @@ export default function Sheet({
           </div>
         )}
 
-        <div
-          className={styles.contents}
-          style={frozenHeight ? { flexBasis: frozenHeight } : undefined}
-          ref={sheetContents}
-        >
-          {_.isFunction(children) ? children({ onClose: triggerClose }) : children}
+        <div className={styles.scrollWrapper}>
+          <div className={styles.contents} ref={sheetContents}>
+            {_.isFunction(children) ? children({ onClose: triggerClose }) : children}
+          </div>
         </div>
 
         {Boolean(footer) && (

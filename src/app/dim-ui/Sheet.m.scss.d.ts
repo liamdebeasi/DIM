@@ -8,6 +8,7 @@ interface CssExports {
   'footer': string;
   'header': string;
   'noHeader': string;
+  'scrollWrapper': string;
   'sheet': string;
   'sheetDisabled': string;
 }
