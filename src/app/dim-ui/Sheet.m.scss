@@ -74,6 +74,8 @@ $control-color: rgba(255, 255, 255, 0.5);
 }
 
 .contents {
+  touch-events: none;
+
   position: absolute;
 
   height: 100%;

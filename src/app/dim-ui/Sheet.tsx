@@ -210,6 +210,8 @@ export default function Sheet({
   // drag velocity or if the sheet has been dragged halfway the down from its height.
   const handleDragEnd = useCallback(
     (_event: TouchEvent | MouseEvent | PointerEvent, info: PanInfo) => {
+      console.log('drag end',_event)
+      debugger;
       if (
         info.velocity.y > dismissVelocity ||
         (sheet.current && info.offset.y > dismissAmount * sheet.current.clientHeight)
@@ -283,7 +285,19 @@ export default function Sheet({
       onAnimationComplete={handleAnimationComplete}
       drag="y"
       dragControls={dragControls}
-      dragListener={false}
+      dragListener={true}
+      onTouchStart={(ev) => {
+        console.log('prev default')
+        ev.preventDefault()
+      }}
+      onDrag={() => {
+        //console.log('drag')
+      }}
+      onDragStart={(ev: PointerEvent) => {
+        console.log('yay',ev)
+        //sheetContents.current?.style.setProperty('overflow-y', 'hidden')
+        sheet.current?.setPointerCapture(ev.pointerId)
+      }}
       dragConstraints={dragConstraints}
       dragElastic={0}
       onDragEnd={handleDragEnd}
